@@ -12,7 +12,16 @@ public class ControladorAereo implements IControladorAereo{
 
 	public void solicitarPista(Avion avion) {
 		System.out.println(avion.getNombre() + " Solicitando Pista");
-		// TODO Auto-generated method stub
+		Pista pistaDisponible= buscarPistaDisponible();
+		if (pistaDisponible!=null){
+			//Avisarle al avion remoto que tiene asignada una pista.
+			avion.pistaAsignada(pistaDisponible.getNumeroPista());
+			pistaDisponible.asignarPista(avion);
+			
+		} else{
+			avion.noHayPista(1);
+		}
+		
 		
 	}
 
@@ -22,6 +31,25 @@ public class ControladorAereo implements IControladorAereo{
 		
 	}
 
+	public void pistaDisponible(Pista pista){
+		
+	}
+	
+	public Pista buscarPistaDisponible(){
+		 for (Pista pista : this.getPistas()) {
+			 if(pista.isDisponible()){
+				 return pista;//Devuelve la primer pista disponible.
+			 	}
+		 }
+		 return null; //No hay pista disponible.
+	}
 
+	public ArrayList <Pista> getPistas() {
+		return pistas;
+	}
+
+	public void setPistas(ArrayList <Pista> pistas) {
+		this.pistas = pistas;
+	}
 
 }
