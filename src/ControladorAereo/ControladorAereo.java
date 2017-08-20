@@ -1,47 +1,61 @@
 package ControladorAereo;
-import java.util.ArrayList;
-import java.util.PriorityQueue;
-import java.util.Queue;
 
+import java.util.ArrayList;
 import Avion.Avion;
 
+public class ControladorAereo  extends Thread implements IControladorAereo{
+	private ArrayList <Pista> pistas = new ArrayList<Pista>();
+	private Turnos turnos;
+	private Integer cantidadAterrizajes=0;
 
-public class ControladorAereo implements IControladorAereo{
-	private ArrayList <Pista> pistas;
-
-
+	public void run () {
+		System.out.println("El controlador se esta ejecutando");
+	}
+	public ControladorAereo () {
+		System.out.println("creando controlador ..");
+		this.setTurnos(new Turnos());
+		for (int i=1 ; i<=5 ;i++ ) {
+			Pista pista = new Pista(i,this);
+			this.getPistas().add(pista);
+		}
+		System.out.println("Pistas inicializadas");
+	}
+	
 	public void solicitarPista(Avion avion) {
 		System.out.println(avion.getNombre() + " Solicitando Pista");
 		Pista pistaDisponible= buscarPistaDisponible();
-		if (pistaDisponible!=null){
-			//Avisarle al avion remoto que tiene asignada una pista.
+		if (pistaDisponible!=null ){
+		//	Avisarle al avion remoto que tiene asignada una pista.
 			avion.pistaAsignada(pistaDisponible.getNumeroPista());
-			pistaDisponible.asignarPista(avion);
-			
+			pistaDisponible.asignarPista(avion);	
 		} else{
-			avion.noHayPista(1);
+			this.getTurnos().asignarTurno(avion);
+			//avion.noHayPista(1);
 		}
-		
-		
-	}
-
-	@Override
-	public void aterrizando(Avion avion) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
-	public void pistaDisponible(Pista pista){
+	public void avionAterrizado(Pista pista){
+		cantidadAterrizajes = cantidadAterrizajes +1;
+		System.out.println("cantidad de aterrizajes:" + cantidadAterrizajes + " pista " + pista.getNumeroPista());
+		Avion avionConTurno = this.getTurnos().proximoTurno(); 
+		if ( avionConTurno != null) {
+			pista.asignarPista(avionConTurno);
+			avionConTurno.pistaAsignada(pista.getNumeroPista());
+			System.out.println("Asignada pista N° " + pista.getNumeroPista() + "al avión " + avionConTurno.getNombre());
+		}
 		
 	}
 	
 	public Pista buscarPistaDisponible(){
+		Pista pistaDisponible = null;
 		 for (Pista pista : this.getPistas()) {
 			 if(pista.isDisponible()){
-				 return pista;//Devuelve la primer pista disponible.
+				 pistaDisponible= pista;
 			 	}
 		 }
-		 return null; //No hay pista disponible.
+		 return pistaDisponible; 
 	}
 
 	public ArrayList <Pista> getPistas() {
@@ -51,5 +65,17 @@ public class ControladorAereo implements IControladorAereo{
 	public void setPistas(ArrayList <Pista> pistas) {
 		this.pistas = pistas;
 	}
+
+	public Turnos getTurnos() {
+		return turnos;
+	}
+
+	public void setTurnos(Turnos turnos) {
+		this.turnos = turnos;
+	}
+	public Integer getCantidadAterrizajes() {
+		return this.cantidadAterrizajes;
+	}
+	
 
 }

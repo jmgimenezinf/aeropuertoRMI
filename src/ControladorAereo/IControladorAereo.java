@@ -6,6 +6,5 @@ public interface IControladorAereo {
 
 
 	public void solicitarPista(Avion avion);
-	public void aterrizando(Avion avion);
 
 }
