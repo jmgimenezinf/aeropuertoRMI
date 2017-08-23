@@ -1,17 +1,16 @@
 package ControladorAereo;
 
-public class TiempoAterrizaje implements Runnable{
-	
-	private static long tiempoAterrizaje =4000;
+public class TiempoAterrizaje implements Runnable {
+
+	private static long tiempoAterrizaje = 30000;
 	private Pista pista;
 
-	
-	public TiempoAterrizaje(Pista pista){
+	public TiempoAterrizaje(Pista pista) {
 		this.setPista(pista);
-		
+
 	}
-	
-	public void contarAterrizaje(){
+
+	public void contarAterrizaje() {
 		try {
 			Thread.sleep(this.getTiempoAterrizaje());
 		} catch (InterruptedException e) {
@@ -25,7 +24,6 @@ public class TiempoAterrizaje implements Runnable{
 		return tiempoAterrizaje;
 	}
 
-
 	public Pista getPista() {
 		return pista;
 	}
@@ -34,12 +32,9 @@ public class TiempoAterrizaje implements Runnable{
 		this.pista = pista;
 	}
 
-
 	@Override
 	public void run() {
 		this.contarAterrizaje();
 	}
 
-	
-	
 }
