@@ -1,23 +1,18 @@
 package ControladorAereo;
 
-import java.util.Timer;
+public class TiempoAterrizaje implements Runnable {
 
-
-
-public class TiempoAterrizaje {
-	
-	private Timer timer = new Timer();
-	private static long tiempoAterrizaje =30;
+	private static long tiempoAterrizaje = 30000;
 	private Pista pista;
-	
-	public TiempoAterrizaje(Pista pista){
+
+	public TiempoAterrizaje(Pista pista) {
 		this.setPista(pista);
-		
+
 	}
-	
-	public void contarAterrizaje(){
+
+	public void contarAterrizaje() {
 		try {
-			this.getTimer().wait(this.getTiempoAterrizaje());
+			Thread.sleep(this.getTiempoAterrizaje());
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -29,15 +24,6 @@ public class TiempoAterrizaje {
 		return tiempoAterrizaje;
 	}
 
-
-	private Timer getTimer() {
-		return timer;
-	}
-
-	private void setTimer(Timer timer) {
-		this.timer = timer;
-	}
-
 	public Pista getPista() {
 		return pista;
 	}
@@ -45,9 +31,10 @@ public class TiempoAterrizaje {
 	public void setPista(Pista pista) {
 		this.pista = pista;
 	}
-	
-	
 
-	
-	
+	@Override
+	public void run() {
+		this.contarAterrizaje();
+	}
+
 }

@@ -1,10 +1,6 @@
 package ControladorAereo;
-import java.util.ArrayList;
-import java.util.Queue;
-import java.util.Timer;
 
 import Avion.Avion;
-
 
 public class Pista {
 	private Integer numeroPista;
@@ -12,30 +8,19 @@ public class Pista {
 	private ControladorAereo controladorAereo;
 	private Avion avion;
 	private TiempoAterrizaje tiempoAterrizaje;
-		
-	public Pista(Integer numeroPista,ControladorAereo controladorAereo){
+
+	public Pista(Integer numeroPista, ControladorAereo controladorAereo) {
 		this.setNumeroPista(numeroPista);
 		this.setDisponible(true);
 		this.setControladorAereo(controladorAereo);
-		this.setTiempoAterrizaje(new TiempoAterrizaje(this));
-	
 	}
 
-	public boolean isDisponible() {
-		return disponible;
-	}
-
-	public void setDisponible(boolean disponible) {
-		
-		this.disponible = disponible;
-	}
-
-	
-	public void asignarPista(Avion avion){
+	public void asignarPista(Avion avion) {
 		this.setAvion(avion);
-		this.getTiempoAterrizaje().contarAterrizaje();
+		this.setDisponible(false);
 		System.out.println("Asignada pista N° " + this.getNumeroPista() + "al avión " + this.getAvion().getNombre());
-		
+		Thread subproceso = new Thread(new TiempoAterrizaje(this));
+		subproceso.start();
 	}
 
 	public Integer getNumeroPista() {
@@ -45,12 +30,13 @@ public class Pista {
 	public void setNumeroPista(Integer numeroPista) {
 		this.numeroPista = numeroPista;
 	}
-	
-	public void finalizoAterrizaje(){
+
+	public void finalizoAterrizaje() {
 		this.setDisponible(true);
-		this.getControladorAereo().pistaDisponible(this);
-		
-		
+		this.getControladorAereo().avionAterrizado(this);
+		System.out.println(
+				"Avion " + this.getAvion().getNombre() + " aterrizado, disponible la pista N°" + this.getNumeroPista());
+
 	}
 
 	public ControladorAereo getControladorAereo() {
@@ -76,5 +62,14 @@ public class Pista {
 	public void setTiempoAterrizaje(TiempoAterrizaje tiempoAterrizaje) {
 		this.tiempoAterrizaje = tiempoAterrizaje;
 	}
-	
+
+	public boolean isDisponible() {
+		return disponible;
+	}
+
+	public void setDisponible(boolean disponible) {
+
+		this.disponible = disponible;
+	}
+
 }
