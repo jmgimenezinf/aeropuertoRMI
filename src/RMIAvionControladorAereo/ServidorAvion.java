@@ -42,4 +42,10 @@ public class ServidorAvion extends Servidor implements IAvion {
 		return this.getAvion().getNombre();
 	}
 
+	@Override
+	public void setNombre(String nombre) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

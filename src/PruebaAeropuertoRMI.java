@@ -2,6 +2,9 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import Avion.Avion;
+import Avion.AvionPrueba;
+import Avion.IAvion;
+import Avion.IAvionSerializable;
 import RMIAvionControladorAereo.ClienteAvion;
 import RMIAvionControladorAereo.ServidorControladorAereo;
 
@@ -28,6 +31,16 @@ public class PruebaAeropuertoRMI {
 		}
 		Avion avionReal = new Avion("1",clienteAvion);
 		avionReal.run();
+
+		IAvionSerializable avionPrueba = new AvionPrueba();
+		avionPrueba.setNombre("7756");
+			try {
+				clienteAvion.mensajeDePrueba(avionPrueba);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 	}
 
 }

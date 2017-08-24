@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 
 import Avion.Avion;
 import Avion.IAvion;
+import Avion.IAvionSerializable;
 import ControladorAereo.ControladorAereo;
 import ControladorAereo.IControladorAereo;
 import RMI.Servidor;
@@ -21,7 +22,7 @@ public class ServidorControladorAereo extends Servidor implements IControladorAe
 		this.setControladorAereo(new ControladorAereo());
 	}
 	@Override
-	public void solicitarPista(IAvion avion) throws RemoteException{
+	public void solicitarPista(IAvionSerializable avion) throws RemoteException{
 		this.getControladorAereo().solicitarPista(avion);
 	}
 
@@ -33,8 +34,8 @@ public class ServidorControladorAereo extends Servidor implements IControladorAe
 		this.controladorAereo = controladorAereo;
 	}
 	@Override
-	public void mensajeDePrueba() throws RemoteException {
-		System.out.println("Llego correctamente");
+	public void mensajeDePrueba(IAvionSerializable avion) throws RemoteException {
+		System.out.println("Llego correctamente el " + avion.getNombre());
 		
 	}
 

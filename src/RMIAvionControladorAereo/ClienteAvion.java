@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 
 import Avion.Avion;
 import Avion.IAvion;
+import Avion.IAvionSerializable;
 import ControladorAereo.IControladorAereo;
 import RMI.Cliente;
 
@@ -38,21 +39,16 @@ public class ClienteAvion extends Cliente implements IControladorAereo{
 	}
 
 	@Override
-	public void mensajeDePrueba() throws RemoteException {
-		this.getServidorControladorAereo().mensajeDePrueba();
+	public void mensajeDePrueba(IAvionSerializable avion) throws RemoteException {
+		this.getServidorControladorAereo().mensajeDePrueba(avion);
 		
 	}
 
 	@Override
-	public void solicitarPista(IAvion avion) throws RemoteException {
-		try {
-			System.out.println(avion.getNombre());
-			this.getServidorControladorAereo().solicitarPista(avion);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void solicitarPista(IAvionSerializable avion) throws RemoteException {
 		
+			this.getServidorControladorAereo().solicitarPista(avion);
+
 	}
 
 }

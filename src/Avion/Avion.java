@@ -1,16 +1,14 @@
 package Avion;
 
+
 import java.rmi.RemoteException;
 import java.util.Random;
 import ControladorAereo.ControladorAereo;
 import RMIAvionControladorAereo.ClienteAvion;
 
 
-public class Avion implements Runnable,IAvion {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Avion implements Runnable,IAvion{
+	private AvionPrueba avionPrueba;
 	private String nombre;
 	private Integer turno;
 	private ClienteAvion clienteAvion;
@@ -22,6 +20,7 @@ public class Avion implements Runnable,IAvion {
 		this.setNombre(nombre);
 		this.setTurno(0);
 		this.setClienteAvion(clienteAvion);
+		
 	}
 
 	//ejecución de hilo
@@ -38,7 +37,12 @@ public class Avion implements Runnable,IAvion {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			this.solicitarPista();
+			try {
+				this.solicitarPista();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			ejecutado = true;
 		}
 
@@ -49,13 +53,18 @@ public class Avion implements Runnable,IAvion {
 	// this.setNombre(nombre);
 	// }
 	
-	public void solicitarPista() {
-		try {
-			this.getClienteAvion().solicitarPista(this);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void solicitarPista() throws RemoteException {
+//		try {
+//			this.getClienteAvion().solicitarPista((IAvionSerializable)this);
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+			avionPrueba = new AvionPrueba();
+			avionPrueba.setNombre("inanicion");
+			this.getClienteAvion().solicitarPista(avionPrueba);
+			System.out.println("revienta en la clase avion solicitar pista");
+
 		// this.getControladorAereo().solicitarPista(this);
 	}
 	@Override
@@ -70,7 +79,8 @@ public class Avion implements Runnable,IAvion {
 		// this.solicitarPista();
 	}
 
-	// getters y setters
+	// getters y setter
+	@Override
 	public String getNombre() {
 		return nombre;
 	}

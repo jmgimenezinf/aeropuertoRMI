@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import Avion.Avion;
 import Avion.IAvion;
+import Avion.IAvionSerializable;
 
 public class ControladorAereo extends Thread implements IControladorAereo {
 	private ArrayList<Pista> pistas = new ArrayList<Pista>();
@@ -67,13 +68,14 @@ public class ControladorAereo extends Thread implements IControladorAereo {
 	}
 
 	@Override
-	public void solicitarPista(IAvion avion) throws RemoteException {
+	public void solicitarPista(IAvionSerializable avion) throws RemoteException {
 		System.out.println(avion.getNombre() + " Solicitando Pista");
 		Pista pistaDisponible = buscarPistaDisponible();
 		if (pistaDisponible != null) {
 			// Avisarle al avion remoto que tiene asignada una pista.
-			avion.pistaAsignada(pistaDisponible.getNumeroPista());
-			pistaDisponible.asignarPista((Avion) avion);
+		//	avion.pistaAsignada(pistaDisponible.getNumeroPista());
+			//pistaDisponible.asignarPista((Avion) avion);
+			System.out.println("hay pista para el avion" + avion.getNombre());
 		} else {
 			this.getTurnos().asignarTurno((Avion) avion);
 			// avion.noHayPista(1);
@@ -82,8 +84,9 @@ public class ControladorAereo extends Thread implements IControladorAereo {
 	}
 
 	@Override
-	public void mensajeDePrueba() throws RemoteException {
+	public void mensajeDePrueba(IAvionSerializable avion) throws RemoteException {
 		// TODO Auto-generated method stub
+		System.out.println(avion.getNombre());
 		
 	}
 
