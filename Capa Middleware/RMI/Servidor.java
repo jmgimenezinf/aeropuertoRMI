@@ -18,7 +18,7 @@ public  class Servidor extends UnicastRemoteObject {
 	protected String IP;
 	protected Registry registro;
 
-	protected Servidor(Integer numeroPuertoRemoto) throws RemoteException {
+	protected Servidor(Integer numeroPuertoRemoto,String nombreServidor) throws RemoteException {
 
 		try {
 			IP = InetAddress.getLocalHost().getHostAddress();
@@ -29,13 +29,13 @@ public  class Servidor extends UnicastRemoteObject {
 		nroPuerto = numeroPuertoRemoto;
 		try {
 			registro = LocateRegistry.createRegistry(nroPuerto); // crea el registro
-			registro.rebind("rmiServidor", this); // registra el servicio
+			registro.rebind(nombreServidor, this); // registra el servicio
 		} catch (AccessException e) {
 			System.out.println("Error al registrar el servicio - AccessException");
 		} catch (RemoteException e) {
 			System.out.println("Error al registrar el servicio - RemoteException");
 		}
-		System.out.println("Servidor: " + IP);
+		System.out.println("Servidor: "+nombreServidor +" IP:"+ IP);
 
 	}
 

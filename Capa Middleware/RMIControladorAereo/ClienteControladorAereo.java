@@ -9,10 +9,10 @@ import RMI.Cliente;
 public class ClienteControladorAereo extends Cliente implements RMIControladorAereo.IAvion {
 	private IAvion servidorAvion;
 
-	public ClienteControladorAereo(String ip, Integer puerto, String lookup) throws RemoteException, NotBoundException {
+	public ClienteControladorAereo(String ip, Integer puerto, String nombreServidorAvion) throws RemoteException, NotBoundException {
 		super(ip, puerto);
 		// TODO Auto-generated constructor stub
-		this.inicializarControladorAereo(lookup);
+		this.inicializarControladorAereo(nombreServidorAvion);
 	}
 
 	private void inicializarControladorAereo(String lookup) {

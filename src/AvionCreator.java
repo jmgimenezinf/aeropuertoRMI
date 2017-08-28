@@ -1,6 +1,7 @@
 import Avion.Avion;
 import Avion.AvionLocal;
 import Avion.AvionRemoto;
+import RMIControladorAereo.ClienteControladorAereo;
 
 public class AvionCreator {
 
@@ -9,8 +10,9 @@ public class AvionCreator {
 		AvionLocal avion = new AvionLocal(nombre);
 		return avion;
 	}
-	public static Avion crearAvionRemoto(String nombre,String ip,Integer puerto) {
-		AvionRemoto avion = new AvionRemoto(ip,puerto,nombre);
+	public static Avion crearAvionRemoto(String nombre,
+			ClienteControladorAereo cteCtrlAereo) {
+		AvionRemoto avion = new AvionRemoto(nombre,cteCtrlAereo);
 		return avion;
 	}
 }
