@@ -3,27 +3,43 @@ package RMIControladorAereo;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.HashMap;
+import java.util.Random;
 
 public class SingletonRegistroConexiones implements IConexionPaP {
 	private static SingletonRegistroConexiones instancia = null;
 	private HashMap<Integer, ClienteControladorAereo> puertoCliente;
+	private static Integer minPort = 10000;
+	private static Integer maxPort = 10500;
+
+	public SingletonRegistroConexiones() {
+		this.setPuertoCliente(new HashMap<Integer, ClienteControladorAereo>());
+		for (int i = 0; i < maxPort - minPort; i++) {
+			this.getPuertoCliente().put(i, null);
+		}
+
+	}
 
 	@Override
 	public Integer solicitarPuerto() {
-		if (!this.getPuertoCliente().isEmpty()) {
-			this.getPuertoCliente().put(10000, null);
-			return 10000;
-		} else {
-			this.getPuertoCliente().put(this.getPuertoCliente().size(), null);
-			return 10000 + this.getPuertoCliente().size();
+		Integer puerto = buscarPuerto();
+		return puerto;
+	}
+
+	private Integer buscarPuerto() {
+		Random random = new Random();
+		Integer puerto = minPort + (int) (Math.random() * maxPort);
+		while (!(this.getPuertoCliente().get(puerto) == null)) {
+			puerto = minPort + (int) (Math.random() * maxPort);
 		}
+		System.out.println("El puerto es asignado es: " + puerto);
+		return puerto;
 	}
 
 	@Override
 	public boolean conectarPaP(String idServidorAvion, Integer puerto) {
 		ClienteControladorAereo cltCtrAereo = null;
 		try {
-			cltCtrAereo = new ClienteControladorAereo("127.0.0.1", puerto, idServidorAvion);
+			cltCtrAereo = new ClienteControladorAereo("127.0.1.1", puerto, idServidorAvion);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -33,7 +49,7 @@ public class SingletonRegistroConexiones implements IConexionPaP {
 			e.printStackTrace();
 			return false;
 		}
-		this.getPuertoCliente().put(puerto,cltCtrAereo);
+		this.getPuertoCliente().put(puerto, cltCtrAereo);
 		return true;
 	}
 

@@ -6,10 +6,17 @@ import RMIControladorAereo.ServidorControladorAereo;
 
 public class Middleware {
 	private ServidorControladorAereo servidorControladorAereo;
-	private ControladorAereo appControladorAereo;
+	private static ControladorAereo appControladorAereo;
 
 	public Middleware(ControladorAereo appControladorAereo) {
 		this.setAppControladorAereo(appControladorAereo);
+		try {
+			this.setServidorControladorAereo(
+					new ServidorControladorAereo(7000,"ctrlAereo", appControladorAereo));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void inicializar() {
@@ -29,12 +36,12 @@ public class Middleware {
 		this.servidorControladorAereo = servidorControladorAereo;
 	}
 
-	public ControladorAereo getAppControladorAereo() {
+	public static ControladorAereo getAppControladorAereo() {
 		return appControladorAereo;
 	}
 
 	public void setAppControladorAereo(ControladorAereo appControladorAereo) {
-		this.appControladorAereo = appControladorAereo;
+		Middleware.appControladorAereo = appControladorAereo;
 	}
 
 }

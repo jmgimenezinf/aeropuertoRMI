@@ -18,12 +18,12 @@ public class ServidorControladorAereo extends Servidor implements IControladorAe
 	}
 
 	@Override
-	public void solicitarPista(String nombreAvion) throws RemoteException {
-		
+	public void solicitarPista(String nombreAvion,Integer puerto) throws RemoteException {
+		SingletonGestorSolicitudes.getInstancia().solicitarPista(nombreAvion, puerto);
 	}
 
 	@Override
-	public Integer solicitarPuerto() {
+	public Integer solicitarPuerto(){
 		return SingletonRegistroConexiones.getInstancia().solicitarPuerto();
 	}
 

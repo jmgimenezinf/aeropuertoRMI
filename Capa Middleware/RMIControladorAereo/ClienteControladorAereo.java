@@ -3,7 +3,7 @@ package RMIControladorAereo;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-import Avion.IAvion;
+import RMIControladorAereo.IAvion;
 import RMI.Cliente;
 
 public class ClienteControladorAereo extends Cliente implements RMIControladorAereo.IAvion {

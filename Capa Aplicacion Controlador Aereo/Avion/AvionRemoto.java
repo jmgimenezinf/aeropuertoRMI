@@ -14,6 +14,7 @@ public class AvionRemoto extends Avion{
 	}
 	@Override
 	public void pistaAsignada(Integer nroPista){
+		System.out.println("Se le asigno la pista:"+nroPista + " Al avion: " + this.getNombre());
 		try {
 			this.getCltCtrlAereo().pistaAsignada(nroPista);
 		} catch (RemoteException e) {

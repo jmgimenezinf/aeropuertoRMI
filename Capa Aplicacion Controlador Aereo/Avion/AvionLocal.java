@@ -1,6 +1,8 @@
 package Avion;
 
 public class AvionLocal extends Avion{
+
+
 	public AvionLocal(String nombre) {
 		this.setNombre(nombre);
 	}

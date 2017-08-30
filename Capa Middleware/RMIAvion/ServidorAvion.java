@@ -1,26 +1,25 @@
 package RMIAvion;
 
 import java.rmi.RemoteException;
-
 import Avion.AvionApli;
-import Avion.IAvion;
 import RMI.Servidor;
+import RMIControladorAereo.IAvion;
 
 public class ServidorAvion extends Servidor implements IAvion {
 	private AvionApli avionApli;
 	private static final long serialVersionUID = 1L;
 
-	protected ServidorAvion(Integer numeroPuertoRemoto,String nombreServidor) throws RemoteException {
+	public ServidorAvion(Integer numeroPuertoRemoto,String nombreServidor) throws RemoteException {
 		super(numeroPuertoRemoto,nombreServidor);
 	}
 
 	@Override
-	public void pistaAsignada(Integer nroPista) {
+	public void pistaAsignada(Integer nroPista) throws RemoteException{
 		this.avionApli.pistaAsignada(nroPista);
 	}
 
 	@Override
-	public void noHayPista(Integer nroTurno) {
+	public void noHayPista(Integer nroTurno) throws RemoteException{
 		this.getAvionApli().noHayPista(nroTurno);
 	}
 
