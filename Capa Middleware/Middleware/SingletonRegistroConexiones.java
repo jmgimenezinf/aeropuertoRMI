@@ -1,9 +1,11 @@
-package RMIControladorAereo;
+package Middleware;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.HashMap;
-import java.util.Random;
+
+import RMIControladorAereo.ClienteControladorAereo;
+import RMIControladorAereo.IConexionPaP;
 
 public class SingletonRegistroConexiones implements IConexionPaP {
 	private static SingletonRegistroConexiones instancia = null;
@@ -26,7 +28,6 @@ public class SingletonRegistroConexiones implements IConexionPaP {
 	}
 
 	private Integer buscarPuerto() {
-		Random random = new Random();
 		Integer puerto = minPort + (int) (Math.random() * maxPort);
 		while (!(this.getPuertoCliente().get(puerto) == null)) {
 			puerto = minPort + (int) (Math.random() * maxPort);

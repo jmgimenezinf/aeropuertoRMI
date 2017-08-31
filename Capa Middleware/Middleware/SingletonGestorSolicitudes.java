@@ -1,11 +1,9 @@
-package RMIControladorAereo;
+package Middleware;
 
 import java.rmi.RemoteException;
 
-import Avion.Avion;
 import Avion.AvionRemoto;
-import Middleware.Middleware;
-import RMIAvion.IControladorAereo;
+import RMIControladorAereo.ClienteControladorAereo;
 import source.AvionCreator;
 
 public class SingletonGestorSolicitudes {

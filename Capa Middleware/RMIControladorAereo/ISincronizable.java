@@ -1,6 +1,9 @@
 package RMIControladorAereo;
 
-public interface ISincronizable{
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+public interface ISincronizable extends Remote{
 	
-	public void sincronizar();
+	public void sincronizar() throws RemoteException ;
 }
