@@ -13,9 +13,9 @@ public class ServidorControladorAereo extends Servidor implements IControladorAe
 	private static final long serialVersionUID = 1L;
 	private ControladorAereo appControladorAereo;
 
-	public ServidorControladorAereo(Integer numeroPuertoRemoto, String nombreServidor, ControladorAereo app)
+	public ServidorControladorAereo(String ip,Integer numeroPuertoRemoto, String nombreServidor, ControladorAereo app)
 			throws RemoteException {
-		super(numeroPuertoRemoto, nombreServidor);
+		super(numeroPuertoRemoto, nombreServidor,ip);
 		this.setAppControladorAereo(app);
 	}
 
@@ -30,8 +30,8 @@ public class ServidorControladorAereo extends Servidor implements IControladorAe
 	}
 
 	@Override
-	public boolean conectarPaP(String idServidor, Integer puerto) {
-		return SingletonRegistroConexiones.getInstancia().conectarPaP(idServidor, puerto);
+	public boolean conectarPaP(String idServidor, String ip,Integer puerto) {
+		return SingletonRegistroConexiones.getInstancia().conectarPaP(idServidor,ip,puerto);
 	}
 
 	public ControladorAereo getAppControladorAereo() {

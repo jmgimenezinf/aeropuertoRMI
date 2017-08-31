@@ -3,6 +3,7 @@ package Middleware;
 import java.rmi.RemoteException;
 import ControladorAereo.ControladorAereo;
 import RMIControladorAereo.ServidorControladorAereo;
+import source.Configuracion;
 
 public class Middleware {
 	private ServidorControladorAereo servidorControladorAereo;
@@ -12,20 +13,11 @@ public class Middleware {
 		this.setAppControladorAereo(appControladorAereo);
 		try {
 			this.setServidorControladorAereo(
-					new ServidorControladorAereo(7000,"ctrlAereo", appControladorAereo));
+					new ServidorControladorAereo(Configuracion.ipServidor,Configuracion.puertoServidor,"ctrlAereo", appControladorAereo));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	public void inicializar() {
-		try {
-			this.setServidorControladorAereo(new ServidorControladorAereo(7556, "rmiCtrAereo", appControladorAereo));
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	public ServidorControladorAereo getServidorControladorAereo() {

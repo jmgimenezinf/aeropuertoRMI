@@ -9,8 +9,8 @@ public class ServidorAvion extends Servidor implements IAvion {
 	private AvionApli avionApli;
 	private static final long serialVersionUID = 1L;
 
-	public ServidorAvion(Integer numeroPuertoRemoto,String nombreServidor) throws RemoteException {
-		super(numeroPuertoRemoto,nombreServidor);
+	public ServidorAvion(String ip,Integer numeroPuertoRemoto,String nombreServidor) throws RemoteException {
+		super(numeroPuertoRemoto,nombreServidor, ip);
 	}
 
 	@Override

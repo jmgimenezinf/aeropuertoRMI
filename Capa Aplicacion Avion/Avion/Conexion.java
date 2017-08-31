@@ -26,17 +26,17 @@ public class Conexion implements IConexionPaP{
 	}
 
 	@Override
-	public boolean conectarPaP(String idServidor, Integer puerto) {
+	public boolean conectarPaP(String idServidor,String ip,Integer puerto) {
 		ServidorAvion servidorAvion=null;
 		try {
-			servidorAvion = new ServidorAvion(puerto,this.getApp().getNombre());
+			servidorAvion = new ServidorAvion(ip,puerto,this.getApp().getNombre());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 		servidorAvion.setAvionApli(this.getApp());
 		this.setPuerto(puerto);
 		try {
-			this.getApp().getClienteAvion().conectarPaP(idServidor, puerto);
+			this.getApp().getClienteAvion().conectarPaP(idServidor,ip, puerto);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

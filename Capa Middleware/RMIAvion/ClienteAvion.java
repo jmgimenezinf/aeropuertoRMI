@@ -61,8 +61,8 @@ public class ClienteAvion extends Cliente implements RMIAvion.IControladorAereo,
 	}
 
 	@Override
-	public boolean conectarPaP(String idServidor, Integer puerto) throws RemoteException {
-		boolean conectado = this.getServidorConexion().conectarPaP(idServidor, puerto);
+	public boolean conectarPaP(String idServidor,String ip, Integer puerto) throws RemoteException {
+		boolean conectado = this.getServidorConexion().conectarPaP(idServidor,ip,puerto);
 		return conectado;
 	}
 

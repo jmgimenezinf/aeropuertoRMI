@@ -37,10 +37,10 @@ public class SingletonRegistroConexiones implements IConexionPaP {
 	}
 
 	@Override
-	public boolean conectarPaP(String idServidorAvion, Integer puerto) {
+	public boolean conectarPaP(String idServidorAvion,String ip,Integer puerto) {
 		ClienteControladorAereo cltCtrAereo = null;
 		try {
-			cltCtrAereo = new ClienteControladorAereo("127.0.1.1", puerto, idServidorAvion);
+			cltCtrAereo = new ClienteControladorAereo(ip, puerto, idServidorAvion);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

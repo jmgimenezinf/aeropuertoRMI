@@ -1,6 +1,8 @@
 package Avion;
 
 import RMIAvion.ClienteAvion;
+import source.Configuracion;
+
 import java.rmi.RemoteException;
 
 
@@ -17,7 +19,7 @@ public class AvionApli implements IAvion{
 		this.setClienteAvion(clienteAvion);
 		this.setConexion(new Conexion(this));
 		this.getConexion().solicitarPuerto();
-		if (this.getConexion().conectarPaP(this.getNombre(),
+		if (this.getConexion().conectarPaP(this.getNombre(),Configuracion.ipCliente,
 				this.getConexion().getPuerto())) {
 			System.out.println("Conectado por el puerto" + this.getConexion().getPuerto());
 		}else {

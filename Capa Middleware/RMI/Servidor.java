@@ -18,13 +18,9 @@ public  class Servidor extends UnicastRemoteObject {
 	protected String IP;
 	protected Registry registro;
 
-	protected Servidor(Integer numeroPuertoRemoto,String nombreServidor) throws RemoteException {
+	protected Servidor(Integer numeroPuertoRemoto,String nombreServidor,String ip) throws RemoteException {
 
-		try {
-			IP = InetAddress.getLocalHost().getHostAddress();
-		} catch (UnknownHostException e1) {
-			System.out.println("No se encontro el servidor");
-		}
+			IP = ip;
 		System.out.println("Puerto N°"+numeroPuertoRemoto);
 		nroPuerto = numeroPuertoRemoto;
 		try {
