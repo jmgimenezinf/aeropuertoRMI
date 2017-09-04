@@ -2,10 +2,8 @@ package Avion;
 
 import java.rmi.RemoteException;
 
-import RMI.Servidor;
 import RMIAvion.ServidorAvion;
 import RMIControladorAereo.IConexionPaP;
-import RMIControladorAereo.ServidorControladorAereo;
 
 public class Conexion implements IConexionPaP{
 	private Integer puerto;

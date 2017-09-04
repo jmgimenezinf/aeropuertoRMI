@@ -3,13 +3,14 @@ import java.rmi.RemoteException;
 
 import Avion.AvionApli;
 import RMIAvion.ClienteAvion;
+import source.Configuracion;
 
 public class AppAvion {
 
 	public static void main(String[] args) {
 		ClienteAvion cliente=null;
 		try {
-			cliente = new ClienteAvion("192.168.1.34",7000);
+			cliente = new ClienteAvion(Configuracion.ipServidor,7000);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
