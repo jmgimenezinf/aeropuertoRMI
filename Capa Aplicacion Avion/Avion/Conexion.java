@@ -2,6 +2,7 @@ package Avion;
 
 import java.rmi.RemoteException;
 
+import Middleware.ITiempoDerivaSerializable;
 import RMIAvion.ServidorAvion;
 import RMIControladorAereo.IConexionPaP;
 
@@ -56,6 +57,12 @@ public class Conexion implements IConexionPaP{
 
 	public void setApp(AvionApli app) {
 		this.app = app;
+	}
+
+	
+	public ITiempoDerivaSerializable sync(String fecha) throws RemoteException {
+			return this.getApp().getClienteAvion().sync(fecha);
+
 	}
 
 }
