@@ -66,9 +66,12 @@ public class Conexion implements IConexionPaP{
 	public ITiempoDerivaSerializable sync(String fecha) throws RemoteException {
 		this.setRelojVirtual(new RelojVirtual(fecha));
 		ITiempoDerivaSerializable relojServidor = this.getApp().getClienteAvion().sync(fecha);
+		System.out.println("La hora del servidor es : " + relojServidor.getFecha());
+		System.out.println("La deriva es : " + relojServidor.getDeriva());
 		while (relojServidor.getDeriva()> Configuracion.maxDeriva){
 			this.getRelojVirtual().actualizarHoraLocal(relojServidor.getFecha());
-			relojServidor = this.getApp().getClienteAvion().sync(this.getRelojVirtual().getHoraLocal());
+			this.getRelojVirtual().setDeriva(relojServidor.getDeriva());
+			relojServidor = this.getApp().getClienteAvion().sync(this.getRelojVirtual().horaMasDeriva());
 		}
 		this.getRelojVirtual().setDeriva(relojServidor.getDeriva());
 		return relojServidor;

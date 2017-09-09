@@ -8,6 +8,8 @@ import org.joda.time.DateTime;
 import org.joda.time.Duration;
 import org.joda.time.Interval;
 
+import source.Configuracion;
+
 public class SingletonNTP {
 	private static SingletonNTP instancia = null;
 	private long deriva;
@@ -58,10 +60,16 @@ public class SingletonNTP {
 
 	private long calcularDeriva(String fechaCliente, String fechaServidor) {
 		this.setCantConexiones(this.getCantConexiones() + 1);
-		this.setDeriva(this.getDeriva()
-				+ intervaloTiempo(fechaCliente, fechaServidor)
-				/ this.getCantConexiones());
-		return this.getDeriva();
+		long intervalo = intervaloTiempo(fechaCliente, fechaServidor);
+		if (intervalo > Configuracion.maxDeriva) {
+			return intervalo;
+		} else {
+			this.setDeriva(this.getDeriva()
+					+ intervaloTiempo(fechaCliente, fechaServidor)
+					/ this.getCantConexiones());
+			return this.getDeriva();
+		}
+
 	}
 
 	private long intervaloTiempo(String fechaCliente, String fechaServidor) {
@@ -78,8 +86,15 @@ public class SingletonNTP {
 
 		DateTime dateTime1 = new DateTime(date1);
 		DateTime dateTime2 = new DateTime(date2);
-		Interval interval = new Interval(dateTime1, dateTime2);
+		System.out.println("aca se rompio : " + dateTime1 + " y " + dateTime2);
+		Interval interval;
+		if (dateTime1.compareTo(dateTime2) == -1) {
+			interval = new Interval(dateTime1, dateTime2);
+		} else {
+			interval = new Interval(dateTime2, dateTime1);
+		}
 		Duration duration = interval.toDuration();
+		System.out.println("duration : " + duration);
 		return duration.getMillis();
 	}
 

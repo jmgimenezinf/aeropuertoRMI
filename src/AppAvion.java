@@ -31,6 +31,7 @@ public class AppAvion {
 		Date dateActual = new Date();
 
 	    String fecha = formato.format(dateActual);
+	    fecha= "2017-09-09 12:48:36.472";
 	    System.out.println(fecha);
 		ITiempoDerivaSerializable td=null;
 		try {
