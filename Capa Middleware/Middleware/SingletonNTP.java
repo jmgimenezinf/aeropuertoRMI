@@ -97,5 +97,17 @@ public class SingletonNTP {
 		System.out.println("duration : " + duration);
 		return duration.getMillis();
 	}
+	public Date stringToDate(String dateString){
+		SimpleDateFormat formato = new SimpleDateFormat(
+				"yyyy-MM-dd HH:mm:ss.SSS");
+		Date date = null;
+		try {
+			date = formato.parse(dateString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return date;
+	}
 
 }

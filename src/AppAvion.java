@@ -27,29 +27,29 @@ public class AppAvion {
 		
 		AvionApli avion = new AvionApli("Avion77",cliente);
 		avion.solicitarPista();
-		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-		Date dateActual = new Date();
-
-	    String fecha = formato.format(dateActual);
-	    fecha= "2017-09-09 12:48:36.472";
-	    System.out.println(fecha);
-		ITiempoDerivaSerializable td=null;
-		try {
-			td = avion.getConexion().sync(fecha);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("fecha del servidor : " + td.getFecha());
-		System.out.println("Deriva dek servidor en segundos:"+ (float)Math.pow(10,-3)* td.getDeriva());
-		//System.out.println(date12);
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	//	System.out.println(date12);
+//		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+//		Date dateActual = new Date();
+//
+//	    String fecha = formato.format(dateActual);
+//	    fecha= "2017-09-09 12:48:36.472";
+//	    System.out.println(fecha);
+//		ITiempoDerivaSerializable td=null;
+//		try {
+//			td = avion.getConexion().sync(fecha);
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		System.out.println("fecha del servidor : " + td.getFecha());
+//		System.out.println("Deriva dek servidor en segundos:"+ (float)Math.pow(10,-3)* td.getDeriva());
+//		//System.out.println(date12);
+//		try {
+//			Thread.sleep(5000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	//	System.out.println(date12);
 	}
 
 }

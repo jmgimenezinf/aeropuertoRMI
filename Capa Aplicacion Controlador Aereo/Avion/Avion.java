@@ -1,9 +1,12 @@
 package Avion;
 
+import org.joda.time.DateTime;
+
 public abstract class Avion implements IAvion{
 	private Integer turno;
 	private Integer pistaAsignada;
 	private String nombre;
+	private DateTime horaSolicitudPista;
 
 	public Integer getPistaAsignada() {
 		return pistaAsignada;
@@ -23,5 +26,12 @@ public abstract class Avion implements IAvion{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	public DateTime getHoraSolicitudPista() {
+		return horaSolicitudPista;
+	}
+	public void setHoraSolicitudPista(DateTime horaSolicitudPista) {
+		this.horaSolicitudPista = horaSolicitudPista;
+	}
+
 	
 }

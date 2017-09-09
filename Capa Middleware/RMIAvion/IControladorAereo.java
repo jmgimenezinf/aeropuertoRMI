@@ -4,5 +4,5 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface IControladorAereo extends Remote{
-	public void solicitarPista(String nombreAvion,Integer puerto) throws RemoteException;
+	public void solicitarPista(String nombreAvion,Integer puerto,String horaSolicitudPista) throws RemoteException;
 }

@@ -1,4 +1,6 @@
 package source;
+import org.joda.time.DateTime;
+
 import Avion.AvionLocal;
 import Avion.AvionRemoto;
 import RMIControladorAereo.ClienteControladorAereo;
@@ -11,8 +13,9 @@ public class AvionCreator {
 		return avion;
 	}
 	public static AvionRemoto crearAvionRemoto(String nombre,
-			ClienteControladorAereo cteCtrlAereo) {
+			ClienteControladorAereo cteCtrlAereo,DateTime horaSolicitudPista) {
 		AvionRemoto avion = new AvionRemoto(nombre,cteCtrlAereo);
+		avion.setHoraSolicitudPista(horaSolicitudPista);
 		return avion;
 	}
 }

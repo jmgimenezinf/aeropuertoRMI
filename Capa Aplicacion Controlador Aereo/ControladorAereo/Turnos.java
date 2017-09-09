@@ -12,7 +12,8 @@ public class Turnos {
 	static class ComparadorEmergencia implements Comparator<Avion> {
 
 		public int compare(Avion one, Avion two) {
-			return 1;
+			return one.getHoraSolicitudPista().compareTo(two.getHoraSolicitudPista());
+			
 		}
 	}
 
