@@ -69,4 +69,9 @@ public class SingletonRegistroConexiones implements IConexionPaP {
 		return instancia;
 	}
 
+	@Override
+	public ITiempoDerivaSerializable sync(String fecha) {
+		return SingletonNTP.getInstancia().sync(fecha);
+	}
+
 }

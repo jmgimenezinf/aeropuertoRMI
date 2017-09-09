@@ -3,6 +3,7 @@ package RMIAvion;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import Middleware.ITiempoDerivaSerializable;
 import RMI.Cliente;
 import RMIControladorAereo.IConexionPaP;
 
@@ -80,6 +81,11 @@ public class ClienteAvion extends Cliente implements RMIAvion.IControladorAereo,
 
 	public void setPuerto(Integer puerto) {
 		this.puerto = puerto;
+	}
+
+	@Override
+	public ITiempoDerivaSerializable sync(String fecha) throws RemoteException {
+		return this.getServidorConexion().sync(fecha);
 	}
 
 

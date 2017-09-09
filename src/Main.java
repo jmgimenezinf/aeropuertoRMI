@@ -27,7 +27,7 @@ public class Main {
 //			e.printStackTrace();
 //		}
 		
-		for (int i=1 ; i<=5;i++){
+		for (int i=1 ; i<=100;i++){
 			AvionLocal avion = new AvionLocal(Integer.toString(i));
 			controladorAereo.solicitarPista(avion);
 		}

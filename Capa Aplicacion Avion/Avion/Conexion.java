@@ -2,12 +2,16 @@ package Avion;
 
 import java.rmi.RemoteException;
 
+import source.Configuracion;
+import Middleware.ITiempoDerivaSerializable;
 import RMIAvion.ServidorAvion;
 import RMIControladorAereo.IConexionPaP;
 
 public class Conexion implements IConexionPaP{
 	private Integer puerto;
 	private AvionApli app;
+	private RelojVirtual relojVirtual;
+	
 	public Conexion (AvionApli app) {
 		this.setApp(app);
 	}
@@ -57,5 +61,27 @@ public class Conexion implements IConexionPaP{
 	public void setApp(AvionApli app) {
 		this.app = app;
 	}
+
+	
+	public ITiempoDerivaSerializable sync(String fecha) throws RemoteException {
+		this.setRelojVirtual(new RelojVirtual(fecha));
+		ITiempoDerivaSerializable relojServidor = this.getApp().getClienteAvion().sync(fecha);
+		while (relojServidor.getDeriva()> Configuracion.maxDeriva){
+			this.getRelojVirtual().actualizarHoraLocal(relojServidor.getFecha());
+			relojServidor = this.getApp().getClienteAvion().sync(this.getRelojVirtual().getHoraLocal());
+		}
+		this.getRelojVirtual().setDeriva(relojServidor.getDeriva());
+		return relojServidor;
+
+	}
+
+	public RelojVirtual getRelojVirtual() {
+		return relojVirtual;
+	}
+
+	public void setRelojVirtual(RelojVirtual relojVirtual) {
+		this.relojVirtual = relojVirtual;
+	}
+
 
 }
