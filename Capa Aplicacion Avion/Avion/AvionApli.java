@@ -1,9 +1,12 @@
 package Avion;
 
+import Middleware.SingletonNTP;
 import RMIAvion.ClienteAvion;
 import source.Configuracion;
 
 import java.rmi.RemoteException;
+
+import org.joda.time.DateTime;
 
 
 public class AvionApli implements IAvion{
@@ -28,8 +31,17 @@ public class AvionApli implements IAvion{
 	}
 
 	public void solicitarPista(){
+		DateTime dateTime = new DateTime();
 		try {
-			this.getClienteAvion().solicitarPista(this.getNombre(),this.getConexion().getPuerto());
+			this.getConexion().sync(RelojVirtual.dateToString(dateTime));
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
+			this.getClienteAvion().solicitarPista(this.getNombre(),
+					this.getConexion().getPuerto(),this.getConexion().getRelojVirtual().horaMasDeriva());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -52,8 +52,8 @@ public class ClienteAvion extends Cliente implements RMIAvion.IControladorAereo,
 	}
 
 	@Override
-	public void solicitarPista(String nombreAvion,Integer puerto) throws RemoteException {
-		this.getServidorControladorAereo().solicitarPista(nombreAvion,puerto);
+	public void solicitarPista(String nombreAvion,Integer puerto,String horaSolicitudPista) throws RemoteException {
+		this.getServidorControladorAereo().solicitarPista(nombreAvion,puerto,horaSolicitudPista);
 	}
 
 	@Override

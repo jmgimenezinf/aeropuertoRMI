@@ -39,12 +39,12 @@ public class RelojVirtual {
 	public String horaMasDeriva(){
 		DateTime dateTime = new DateTime(stringToDate(this.getHoraLocal()));
 		dateTime.plusMillis((int)this.getDeriva());
-		return this.dateToString(dateTime);
+		return RelojVirtual.dateToString(dateTime);
 	}
 	public void actualizarHoraLocal(String relojServidor){
 		System.out.println("Hora Local: "+ this.getHoraLocal());
-		DateTime dateServidor = new DateTime(this.stringToDate(relojServidor));
-		DateTime dateLocal = new DateTime(this.stringToDate(this.getHoraLocal()));
+		DateTime dateServidor = new DateTime(RelojVirtual.stringToDate(relojServidor));
+		DateTime dateLocal = new DateTime(RelojVirtual.stringToDate(this.getHoraLocal()));
 		System.out.println("Hora servidor: " + dateServidor);
 		System.out.println("Hora local:" + dateLocal);
 		System.out.println("min servidor:" + dateServidor.getMinuteOfDay()%60+"min local: "+ dateLocal.getMinuteOfDay()%60);
@@ -96,7 +96,7 @@ public class RelojVirtual {
 		System.out.println("Hora Ajustada :" + dateLocal);
 	}
 
-	private Date stringToDate(String dateString){
+	public static Date stringToDate(String dateString){
 		SimpleDateFormat formato = new SimpleDateFormat(
 				"yyyy-MM-dd HH:mm:ss.SSS");
 		Date date = null;
@@ -108,7 +108,7 @@ public class RelojVirtual {
 		}
 		return date;
 	}
-	private String dateToString(DateTime date){
+	public static String dateToString(DateTime date){
 		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 	    String dateString = formato.format(date.toDate());
 		return dateString;
