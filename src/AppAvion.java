@@ -28,10 +28,10 @@ public class AppAvion {
 		AvionApli avion = new AvionApli("Avion77",cliente);
 		avion.solicitarPista();
 		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-		Date d = new Date();
-	//	DateTime date12 = new DateTime(2017,9,5,12,12,12,12);
-		//d= date12.toDate();
-	    String fecha = formato.format(d);
+		Date dateActual = new Date();
+
+	    String fecha = formato.format(dateActual);
+	    System.out.println(fecha);
 		ITiempoDerivaSerializable td=null;
 		try {
 			td = avion.getConexion().sync(fecha);

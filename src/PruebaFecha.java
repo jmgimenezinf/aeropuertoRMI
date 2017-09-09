@@ -58,23 +58,24 @@ public class PruebaFecha {
 		    int mins = (int) (ms % 60); ms -= mins; ms /= 60;
 		    int horas = (int) ms;
 		    DateTime date12 = new DateTime(2017,9,5,horas,mins,segs,mili); 
-		    try {
-				Runtime.getRuntime().exec("netstat");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} //para la hora
-		    Process process=null;
-			try {
-				process = Runtime.getRuntime().exec("time 10:50:00 AM");
-				process.destroy();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		    InputStream inputstream = process.getInputStream();
-		    BufferedInputStream bufferedinputstream = new BufferedInputStream(inputstream);
-		    System.out.println(bufferedinputstream);
+		    System.out.println(date12);
+//		    try {
+//				Runtime.getRuntime().exec("netstat");
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} //para la hora
+//		    Process process=null;
+//			try {
+//				process = Runtime.getRuntime().exec("time 10:50:00 AM");
+//				process.destroy();
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		    InputStream inputstream = process.getInputStream();
+//		    BufferedInputStream bufferedinputstream = new BufferedInputStream(inputstream);
+//		    System.out.println(bufferedinputstream);
 		 //   System.out.println(formato.parse("2017-09-05 "+horas +":"+mins+":"+ segs+":"+ mili));
 		 //   System.out.println(formato.format(date12.toDate()));
 		 //   ProcessBuilder builder = new ProcessBuilder(new String[] { "cmd.exe", "/C", "time 05:30:00 PM"});
