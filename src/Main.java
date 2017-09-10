@@ -1,16 +1,8 @@
 
-
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
-
 import org.joda.time.DateTime;
-
-import Avion.AvionApli;
 import Avion.AvionLocal;
-import Config.MySQL;
 import ControladorAereo.ControladorAereo;
 import Middleware.Middleware;
-import RMIAvion.ClienteAvion;
 
 public class Main {
 
@@ -29,7 +21,7 @@ public class Main {
 //			e.printStackTrace();
 //		}
 		
-		for (int i=1 ; i<=100;i++){
+		for (int i=1 ; i<=5;i++){
 			AvionLocal avion = new AvionLocal(Integer.toString(i));
 			DateTime dateTime = new DateTime();
 			avion.setHoraSolicitudPista(dateTime);
@@ -39,7 +31,7 @@ public class Main {
 //		appAvion.solicitarPista();
 //		AvionApli appAvion2 = new AvionApli("Avion Remoto 2", clienteAvion);
 //		appAvion2.solicitarPista();
-	//	MySQL my = new MySQL();	
+
 	}
 
 }

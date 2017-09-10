@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import org.joda.time.DateTime;
 
 import Avion.AvionRemoto;
+import Consultas.ConsultasSQL;
 import RMIControladorAereo.ClienteControladorAereo;
 import source.AvionCreator;
 
@@ -24,6 +25,7 @@ public class SingletonGestorSolicitudes {
 		cltCtrlAereo = SingletonRegistroConexiones.getInstancia().getPuertoCliente().get(puerto);
 		DateTime dateTime = new DateTime(SingletonNTP.getInstancia().stringToDate(horaSolicitudPista));
 		AvionRemoto avionRemoto = AvionCreator.crearAvionRemoto(nombreAvion,cltCtrlAereo,dateTime);
+		ConsultasSQL.getInstancia().createAvion(avionRemoto,puerto,horaSolicitudPista);
 		Middleware.getAppControladorAereo().solicitarPista(avionRemoto);
 		
 	}

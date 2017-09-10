@@ -7,7 +7,7 @@ public abstract class Avion implements IAvion{
 	private Integer pistaAsignada;
 	private String nombre;
 	private DateTime horaSolicitudPista;
-
+	private int id = 0;
 	public Integer getPistaAsignada() {
 		return pistaAsignada;
 	}
@@ -31,6 +31,12 @@ public abstract class Avion implements IAvion{
 	}
 	public void setHoraSolicitudPista(DateTime horaSolicitudPista) {
 		this.horaSolicitudPista = horaSolicitudPista;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	

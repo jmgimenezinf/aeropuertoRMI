@@ -1,6 +1,7 @@
 package ControladorAereo;
 
 import Avion.Avion;
+import Consultas.ConsultasSQL;
 
 public class Pista {
 	private Integer numeroPista;
@@ -33,6 +34,9 @@ public class Pista {
 
 	public void finalizoAterrizaje() {
 		this.setDisponible(true);
+		if (this.getAvion().getId() != 0){
+			ConsultasSQL.getInstancia().aterrizado(this.getAvion());
+		}
 		this.getControladorAereo().avionAterrizado(this);
 		System.out.println(
 				"Avion " + this.getAvion().getNombre() + " aterrizado, disponible la pista N°" + this.getNumeroPista());
