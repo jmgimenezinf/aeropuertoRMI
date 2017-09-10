@@ -1,6 +1,5 @@
 package Avion;
 
-import Middleware.SingletonNTP;
 import RMIAvion.ClienteAvion;
 import source.Configuracion;
 
