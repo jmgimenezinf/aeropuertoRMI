@@ -31,7 +31,7 @@ public class Turnos {
 		Integer turnoAsignado = this.getTurnos().size();
 		avion.setTurno(turnoAsignado);
 		avion.noHayPista(turnoAsignado);
-		System.out.println("No hay pistas disponibles para el avión " + avion.getNombre() + "Turno n°" + turnoAsignado);
+		System.out.println("No hay pistas disponibles para el avión " + avion.getNombre() + " Turno n°" + turnoAsignado);
 	}
 
 	private Queue<Avion> getTurnos() {

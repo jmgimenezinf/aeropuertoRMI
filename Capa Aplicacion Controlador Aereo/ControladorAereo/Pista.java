@@ -19,7 +19,7 @@ public class Pista {
 	public void asignarPista(Avion avion) {
 		this.setAvion(avion);
 		this.setDisponible(false);
-		System.out.println("Asignada pista N° " + this.getNumeroPista() + "al avión " + this.getAvion().getNombre());
+		System.out.println("Asignada pista N° " + this.getNumeroPista() + " al avión " + this.getAvion().getNombre());
 		Thread subproceso = new Thread(new TiempoAterrizaje(this));
 		subproceso.start();
 	}
@@ -40,7 +40,7 @@ public class Pista {
 		this.getControladorAereo().avionAterrizado(this);
 		System.out.println(
 				"Avion " + this.getAvion().getNombre() + " aterrizado, disponible la pista N°" + this.getNumeroPista());
-
+		System.out.println("");
 	}
 
 	public ControladorAereo getControladorAereo() {

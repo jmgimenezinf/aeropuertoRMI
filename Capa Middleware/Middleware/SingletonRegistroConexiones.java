@@ -32,7 +32,6 @@ public class SingletonRegistroConexiones implements IConexionPaP {
 		while (!(this.getPuertoCliente().get(puerto) == null)) {
 			puerto = minPort + (int) (Math.random() * maxPort);
 		}
-		System.out.println("El puerto es asignado es: " + puerto);
 		return puerto;
 	}
 
