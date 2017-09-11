@@ -39,57 +39,57 @@ public class RelojVirtual {
 		return RelojVirtual.dateToString(dateTime);
 	}
 	public void actualizarHoraLocal(String relojServidor){
-		System.out.println("Hora Local: "+ this.getHoraLocal());
+		System.out.println("");
 		DateTime dateServidor = new DateTime(RelojVirtual.stringToDate(relojServidor));
 		DateTime dateLocal = new DateTime(RelojVirtual.stringToDate(this.getHoraLocal()));
+		System.out.println("");
 		System.out.println("Hora servidor: " + dateServidor);
+		System.out.println("");
 		System.out.println("Hora local:" + dateLocal);
-		System.out.println("min servidor:" + dateServidor.getMinuteOfDay()%60+"min local: "+ dateLocal.getMinuteOfDay()%60);
-		System.out.println("segundos servidor:" + dateServidor.getSecondOfDay()%60+"segundos local: "+ dateLocal.getSecondOfDay()%60);
+		System.out.println("");
+
 		
+		//
+		int diffHora;
 		if (dateServidor.getHourOfDay()>dateLocal.getHourOfDay()){
-			int diffHora;
 			diffHora = dateServidor.getHourOfDay() - dateLocal.getHourOfDay();
-			System.out.println(diffHora);
 			dateLocal=dateLocal.plusHours(diffHora);
 		}else{
-			int diffHora;
+
 			diffHora = dateLocal.getHourOfDay()- dateServidor.getHourOfDay();
 			dateLocal.minusHours(diffHora);
-			System.out.println(diffHora);
 			dateLocal=dateLocal.minusHours(diffHora);
 		}
-		
+		System.out.println("");
+		System.out.println("La diferencia en horas es:" + diffHora);
+		int diffMin;
 		if (dateServidor.getMinuteOfDay()>dateLocal.getMinuteOfDay()){
-			int diffMin;
 			diffMin = dateServidor.getMinuteOfDay()%60 - dateLocal.getMinuteOfDay()%60;
 			dateLocal.plusMinutes(diffMin);
-			System.out.println(diffMin);
 			dateLocal=dateLocal.plusMinutes(diffMin);
 			
 		}else{
-			int diffMin;
 			diffMin = dateLocal.getMinuteOfDay()%60- dateServidor.getMinuteOfDay()%60;
 			dateLocal.minusMinutes(diffMin);
-			System.out.println(diffMin);
 			dateLocal=dateLocal.minusMinutes(diffMin);
 		}
-		
+		System.out.println("");
+		System.out.println("La diferencia en minutos es:" + diffMin);
+		int diffSeg;
 		if (dateServidor.getSecondOfDay()>dateLocal.getSecondOfDay()){
-			int diffSeg;
 			diffSeg = dateServidor.getSecondOfDay()%60 - dateLocal.getSecondOfDay()%60;
 			dateLocal.plusSeconds(diffSeg);
-			System.out.println(diffSeg);
 			dateLocal=dateLocal.plusSeconds(diffSeg);
 			
 		}else{
-			int diffSeg;
 			diffSeg = dateLocal.getSecondOfDay() - dateServidor.getSecondOfDay();
 			dateLocal.minusSeconds(diffSeg);
-			System.out.println(diffSeg);
 			dateLocal=dateLocal.minusSeconds(diffSeg);
 		}
+		System.out.println("");
+		System.out.println("La diferencia en segundos es:" + diffSeg);
 		this.setHoraLocal(dateToString(dateLocal));
+		System.out.println("");
 		System.out.println("Hora Ajustada :" + dateLocal);
 	}
 

@@ -23,8 +23,10 @@ public class AvionApli implements IAvion{
 		this.getConexion().solicitarPuerto();
 		if (this.getConexion().conectarPaP(this.getNombre(),Configuracion.ipCliente,
 				this.getConexion().getPuerto())) {
-			System.out.println("Conectado por el puerto" + this.getConexion().getPuerto());
+			System.out.println("");
+			System.out.println("Conectado por el puerto " + this.getConexion().getPuerto());
 		}else {
+			System.out.println("");
 			System.out.println("Erro de conexión punto a punto");
 		}
 	}
@@ -49,13 +51,15 @@ public class AvionApli implements IAvion{
 	@Override
 	public void pistaAsignada(Integer nroPista) {
 		this.setPistaAsignada(nroPista);
+		System.out.println("");
 		System.out.println("Recibio: Asignada pista N°"+ 
-		nroPista + " Desde :"+this.getNombre()+ " Respuesta: Despegando...");
+		nroPista + " Desde :"+this.getNombre()+ " Respuesta: Aterrizando...");
 	}
 	@Override
 	public void noHayPista(Integer nroTurno) {
 		this.setTurno(nroTurno);
-		System.out.println("Recibio:No hay pista disponible. Turno: "+ nroTurno + " Desde :"+this.getNombre() +
+		System.out.println("");
+		System.out.println("Recibio: No hay pista disponible. Turno: "+ nroTurno + " Desde :"+this.getNombre() +
 				" Respuesta: Esperaré "+ nroTurno * 30 + " segundos");
 		// pasa un tiempo nroTurno * tiempo
 		// this.solicitarPista();

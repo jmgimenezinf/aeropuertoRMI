@@ -14,6 +14,7 @@ public class PruebaFecha {
 			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 			Date d = new Date();
 		    String fecha = formato.format(d);
+		    
 		    System.out.println("Fecha en string : " + fecha);
 		    
 		//  try {

@@ -18,7 +18,7 @@ public class AppAvion {
 			e.printStackTrace();
 		}
 		
-		AvionApli avion = new AvionApli("Avion77",cliente);
+		AvionApli avion = new AvionApli("AvionMacarena",cliente);
 		avion.solicitarPista();
 //		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 //		Date dateActual = new Date();
