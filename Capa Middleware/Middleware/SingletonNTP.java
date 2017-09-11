@@ -54,7 +54,9 @@ public class SingletonNTP {
 		tiempoDeriva.setFecha(fechaActualServidorString);
 		tiempoDeriva.setDeriva(calcularDeriva(fechaCliente,
 				fechaActualServidorString));
-		System.out.println("cantidad de conexiones = " + getCantConexiones());
+		System.out.println("");
+		System.out.println("Sincronizando relojes cociente de deriva = " + getCantConexiones());
+		System.out.println("");
 		return tiempoDeriva;
 	}
 
@@ -86,7 +88,6 @@ public class SingletonNTP {
 
 		DateTime dateTime1 = new DateTime(date1);
 		DateTime dateTime2 = new DateTime(date2);
-		System.out.println("aca se rompio : " + dateTime1 + " y " + dateTime2);
 		Interval interval;
 		if (dateTime1.compareTo(dateTime2) == -1) {
 			interval = new Interval(dateTime1, dateTime2);
@@ -94,7 +95,6 @@ public class SingletonNTP {
 			interval = new Interval(dateTime2, dateTime1);
 		}
 		Duration duration = interval.toDuration();
-		System.out.println("duration : " + duration);
 		return duration.getMillis();
 	}
 	public Date stringToDate(String dateString){

@@ -1,6 +1,7 @@
 package ControladorAereo;
 
 import java.util.ArrayList;
+
 import Avion.Avion;
 
 public class ControladorAereo extends Thread implements IControladorAereo {
@@ -24,12 +25,13 @@ public class ControladorAereo extends Thread implements IControladorAereo {
 
 	public void avionAterrizado(Pista pista) {
 		cantidadAterrizajes = cantidadAterrizajes + 1;
-		System.out.println("cantidad de aterrizajes:" + cantidadAterrizajes + " pista " + pista.getNumeroPista());
+		System.out.println("");
+		System.out.println("Pista :" + pista.getNumeroPista() + " Cantidad de aterrizajes : " + cantidadAterrizajes);
+		System.out.println("");
 		Avion avionConTurno = this.getTurnos().proximoTurno();
 		if (avionConTurno != null) {
 			pista.asignarPista(avionConTurno);
 			avionConTurno.pistaAsignada(pista.getNumeroPista());
-			System.out.println("Asignada pista N° " + pista.getNumeroPista() + "al avión " + avionConTurno.getNombre());
 		}
 
 	}
@@ -66,15 +68,15 @@ public class ControladorAereo extends Thread implements IControladorAereo {
 
 	@Override
 	public void solicitarPista(Avion avion){
+		System.out.println("");
 		System.out.println(avion.getNombre() + " Solicitando Pista");
+		System.out.println("");
 		Pista pistaDisponible = buscarPistaDisponible();
 		if (pistaDisponible != null) {
-			// Avisarle al avion remoto que tiene asignada una pista.
 			avion.pistaAsignada(pistaDisponible.getNumeroPista());
 			pistaDisponible.asignarPista(avion);
 		} else {
 			this.getTurnos().asignarTurno(avion);
-			// avion.noHayPista(1);
 		}
 
 	}

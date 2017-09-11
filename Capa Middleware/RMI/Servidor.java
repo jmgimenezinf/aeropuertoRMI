@@ -30,7 +30,7 @@ public  class Servidor extends UnicastRemoteObject {
 			System.out.println("Error al registrar el servicio - RemoteException");
 		}
 		System.out.println("Servidor: "+nombreServidor +" IP:"+ IP);
-
+		System.out.println("  ");
 	}
 
 }
